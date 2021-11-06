@@ -18,6 +18,29 @@ export const mobileReducer = (state = initialMobiles, action) => {
           return {...state, user:action.data};
         case 'GET_SINGLE_USER_FAILED':
           return {...state, message:action.message};
+        case 'ADD_USER_SUCCESS':{
+          let users = [...state.users];
+          users.push(action.data);
+          return {...state, users};
+        }
+        case 'ADD_USER_FAILED':
+          return {...state, message:action.message};
+        case 'EDIT_USER_SUCCESS':{
+          let users = [...state.users];
+          let findIndex = users.findIndex((user) => user.id === action.data.id);
+          users[findIndex] = action.data;
+          return {...state, users};
+        }
+        case 'EDIT_USER_FAILED':
+          return {...state, message:action.message};
+        case 'DELETE_USER_SUCCESS':{
+          let users = [...state.users];
+          let findIndex = users.findIndex((user) => user.id === action.data);
+          users.splice(findIndex,1);
+          return {...state, users};
+        }
+        case 'DELETE_USER_FAILED':
+          return {...state, message:action.message};
         default:   
           return state;
     }

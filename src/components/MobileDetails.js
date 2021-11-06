@@ -6,6 +6,9 @@ import {
   sellMobile,
   getAllUsers,
   getSingleUser,
+  addUser,
+  editUser,
+  deleteUser
 } from "./../redux/actions/mobile-action";
 
 // gh'' GH""
@@ -16,7 +19,10 @@ function MobileDetails({
   users,
   getAllUsers,
   user,
-  getSingleUser
+  getSingleUser,
+  addUser,
+  editUser,
+  deleteUser
 }) {
   const styles = {
     btn: {
@@ -38,7 +44,7 @@ function MobileDetails({
       <button style={styles.btn} onClick={() => sellMobile()}>
         Sell Mobile
       </button>
-      <button style={styles.btn} onClick={() => getAllUsers()}>
+      <button style={styles.btn} onClick={() => addUser({name: "Venky"})}>
         Add User
       </button>
       <button style={styles.btn} onClick={() => getAllUsers()}>
@@ -47,10 +53,10 @@ function MobileDetails({
       <button style={styles.btn} onClick={() => getSingleUser(1)}>
         Gett Single Users
       </button>
-      <button style={styles.btn} onClick={() => {}}>
+      <button style={styles.btn} onClick={() => editUser({name: "Venkyy"}, 1)}>
         Edit User
       </button>
-      <button style={styles.btn} onClick={() => {}}>
+      <button style={styles.btn} onClick={() => deleteUser(1)}>
         Delete User
       </button>
     </div>
@@ -58,6 +64,7 @@ function MobileDetails({
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.users);
   return {
     noOfMobiles: state.noOfMobiles,
     users: state.users,
@@ -72,6 +79,9 @@ const mapDispatchToProps = (dispatch) => {
       sellMobile,
       getAllUsers,
       getSingleUser,
+      addUser,
+      editUser,
+      deleteUser
     },
     dispatch
   );

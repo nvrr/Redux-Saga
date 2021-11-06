@@ -10,6 +10,14 @@ export const getAllUsers = () =>{
 export const getSingleUser = (id) =>{
     return {type: 'GET_SINGLE_USER', id}
 }
-
+export const addUser = (payload) =>{
+    return {type: 'ADD_USER', payload}
+}
+export const editUser = (payload, id) =>{
+    return {type: 'EDIT_USER', payload, id}
+}
+export const deleteUser = (id) =>{
+    return {type: 'DELETE_USER', id}
+}
 
 // gh'' GH""
