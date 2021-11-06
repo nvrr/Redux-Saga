@@ -1,5 +1,6 @@
 const initialMobiles = {
     noOfMobiles: 10,
+    users: [],
 }
 
 export const mobileReducer = (state = initialMobiles, action) => {
@@ -8,7 +9,11 @@ export const mobileReducer = (state = initialMobiles, action) => {
           return {...state, noOfMobiles: state.noOfMobiles - 1};
         case 'SELL_MOBILE_SUCCESS':
           return {...state, noOfMobiles: state.noOfMobiles + 1};
-        default:
+        case 'GET_ALL_USERS_SUCCESS':
+          return {...state, users:action.data};
+        case 'GET_ALL_USERS_FAILED':
+          return {...state, message:action.message};
+        default:   
           return state;
     }
 }
