@@ -1,15 +1,23 @@
-import { delay, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { all, delay, put, takeEvery, takeLatest } from 'redux-saga/effects'
 
 // gh'' GH""
 
 function* buyMobile(){
-    yield delay(2000);
+    // yield delay(2000);
     yield put({type: 'BUY_MOBILE_SUCCESS'});
 }
+function* sellMobile(){
+    // yield delay(2000);
+    yield put({type: 'SELL_MOBILE_SUCCESS'});
+}
+
 
 // takeLatest takes input and gives o/p for latest reqested :4 times clicked:o/p=>10 => 11
 export function* watchUser() {
-    yield takeLatest('BUY_MOBILE', buyMobile);
+    yield all([
+        takeLatest('BUY_MOBILE', buyMobile),
+        takeLatest('SELL_MOBILE', sellMobile),
+        ]);
 }
 // export function* watchUser() {
 //     yield takeEvery('BUY_MOBILE', buyMobile);
