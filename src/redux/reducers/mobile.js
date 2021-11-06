@@ -1,6 +1,7 @@
 const initialMobiles = {
     noOfMobiles: 10,
     users: [],
+    user: {},
 }
 
 export const mobileReducer = (state = initialMobiles, action) => {
@@ -12,6 +13,10 @@ export const mobileReducer = (state = initialMobiles, action) => {
         case 'GET_ALL_USERS_SUCCESS':
           return {...state, users:action.data};
         case 'GET_ALL_USERS_FAILED':
+          return {...state, message:action.message};
+        case 'GET_SINGLE_USER_SUCCESS':
+          return {...state, user:action.data};
+        case 'GET_SINGLE_USER_FAILED':
           return {...state, message:action.message};
         default:   
           return state;

@@ -20,7 +20,14 @@ function* getAllUsers(){
         yield put({type: 'GET_ALL_USERS_FAILED',message: error.message});
     }
 }
-
+function* getSingleUser({id}){
+    try{
+        let users = yield call(axios.get, 'https://jsonplaceholder.typicode.com/users/'+id);
+        yield put({type: 'GET_SINGLE_USER_SUCCESS', data:users.data});
+    } catch (error) {
+        yield put({type: 'GET_SINGLE_USER_FAILED',message: error.message});
+    }
+}
 
 // takeLatest takes input and gives o/p for latest reqested :4 times clicked:o/p=>10 => 11
 export function* watchUser() {
@@ -28,9 +35,11 @@ export function* watchUser() {
         takeLatest('BUY_MOBILE', buyMobile),
         takeLatest('SELL_MOBILE', sellMobile),
         takeLatest('GET_ALL_USERS', getAllUsers),
+        takeLatest('GET_SINGLE_USER', getSingleUser)
         ]);
 }
 // export function* watchUser() {
 //     yield takeEvery('BUY_MOBILE', buyMobile);
 // } //takeEvery takes every input and if count is 4 times types its do that 4 times,o/p=>10=>14
 
+// gh'' GH""

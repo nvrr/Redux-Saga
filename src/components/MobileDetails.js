@@ -5,6 +5,7 @@ import {
   buyMobile,
   sellMobile,
   getAllUsers,
+  getSingleUser,
 } from "./../redux/actions/mobile-action";
 
 // gh'' GH""
@@ -14,6 +15,8 @@ function MobileDetails({
   noOfMobiles,
   users,
   getAllUsers,
+  user,
+  getSingleUser
 }) {
   const styles = {
     btn: {
@@ -27,7 +30,7 @@ function MobileDetails({
   return (
     <div>
       <h1>
-        Number of Mobiles {noOfMobiles} and Users {users.length}{" "}
+        Number of Mobiles {noOfMobiles} and Users {users.length} and Details {user.name}
       </h1>
       <button style={styles.btn} onClick={() => buyMobile()}>
         Buy Mobile
@@ -40,6 +43,9 @@ function MobileDetails({
       </button>
       <button style={styles.btn} onClick={() => getAllUsers()}>
         Gett All Users
+      </button>
+      <button style={styles.btn} onClick={() => getSingleUser(1)}>
+        Gett Single Users
       </button>
       <button style={styles.btn} onClick={() => {}}>
         Edit User
@@ -55,6 +61,7 @@ const mapStateToProps = (state) => {
   return {
     noOfMobiles: state.noOfMobiles,
     users: state.users,
+    user: state.user,
   };
 };
 
@@ -64,6 +71,7 @@ const mapDispatchToProps = (dispatch) => {
       buyMobile,
       sellMobile,
       getAllUsers,
+      getSingleUser,
     },
     dispatch
   );
